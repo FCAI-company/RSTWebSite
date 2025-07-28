@@ -1,0 +1,1 @@
+export const ApplyLink:string="https://sis.rst.edu.eg/UI/Adm/AdmMod_ApplicantForm.aspx";
