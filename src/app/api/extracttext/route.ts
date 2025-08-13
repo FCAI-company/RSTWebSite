@@ -24,7 +24,10 @@ export async function GET(request: Request) {
       const pdfBuffer = Buffer.from(arrayBuffer);
       const data = await pdf(pdfBuffer);
 
-      context += `${fileName}:\n ${data.text.replace(/\n\s*\n/g, "\n")}\n\n`;
+      context += `${fileName.replace(/_/g, " ")}:\n ${data.text.replace(
+        /\n\s*\n/g,
+        "\n",
+      )}\n\n`;
     }
     // for (const fileName of files) {
     //   const filePath = path.join(dataDir, fileName);
