@@ -34,19 +34,19 @@ export function DiscoverRSTUniversity() {
     <section
       id="DiscoverRSTUniversity"
       style={{
-         minHeight: "calc(100dvh - 105px)",
-          // height: "calc(100dvh - 105px)",
+        minHeight: "calc(100dvh - 105px)",
+        // height: "calc(100dvh - 105px)",
       }}
       className="    relative flex items-center  "
     >
       <div className="sm:container  h-full sm:h-full sm:mx-auto px-2 sm:px-4 lg:px-8 sm:py-20 lg:py-32">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-extrabold text-[#0047AB] mb-0 text-center">
-            News &amp; Events
+            Discover Al-Ryada University
           </h2>
           <p className=" text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-0 text-center">
-            Stay updated with the latest news, events, and activities from our
-            vibrant university community
+            empowering future leaders through excellence in education and
+            innovation.
           </p>
           <span className="mb-4 mx-auto flex  bg-[#0047AB] w-[300px] h-[2px]"></span>
         </div>

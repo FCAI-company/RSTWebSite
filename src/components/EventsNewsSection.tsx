@@ -305,7 +305,7 @@ export function EventsNewsSection() {
     <section
       id="EventsNewsSection"
       className="  bg-secondary/5"
-      style={{ minHeight: "calc(100dvh - 105px)" }}
+      // style={{ minHeight: "calc(100dvh - 105px)" }}
     >
       <div className="container mx-auto px-4 lg:px-8 py-20">
         <div className="text-center mb-12">

@@ -25,13 +25,20 @@ export function HeroSection() {
   return (
     <section
       id="Home"
-      className="snap-center py-2 sm:p-0 m-0   w-full flex items-center relative overflow-hidden bg-gradient-to-br from-background via-background to-secondary/20"
-      style={{ height: "calc(100dvh - 105px)" }}
+      className="  py-2 sm:p-0 m-0   w-full flex items-center relative  bg-gradient-to-br from-background via-background to-secondary/20"
+      style={{
+        minHeight: "calc(100dvh - 105px)",
+      }}
     >
-      <div className=" sm:w-full sm:h-full sm:flex px-0 sm:px-5    ">
+      <div
+        className=" sm:w-full sm:h-full sm:flex px-0 sm:px-5    "
+        style={{
+          minHeight: "calc(100dvh - 105px)",
+        }}
+      >
         <div className="relative w-full grid lg:grid-cols-2 gap-0 sm:gap-12 items-center">
           {/* Content */}
-          <div className="px-5 order-2 sm:order-1  space-y-8    z-10   ">
+          <div className="px-5 order-2 sm:order-1  sm:w-[60%] space-y-8    z-10   ">
             <div className="space-y-4">
               <Badge variant="secondary" className="px-3 py-1">
                 Ranked #22 Egyptian universities 2025
@@ -101,8 +108,8 @@ export function HeroSection() {
                   playsInline
                   muted
                   controls={false}
-
-                  // poster="/rst-slider-1.webp" // Optional
+                  preload="metadata"
+                   poster="/rst-slider-1.webp" // Optional
                 >
                   <source
                     width={100}
