@@ -28,8 +28,8 @@ export async function GET(request: Request) {
 
      const arrayBuffer = await res.arrayBuffer();
       const pdfBuffer = Buffer.from(arrayBuffer);
-      const data = await pdf(pdfBuffer);
-context = pdfBuffer+"  "+data.text;
+      // const data = await pdf(pdfBuffer);
+context = pdfBuffer+"  " ;
 //   context += `${fileName.replace(/_/g, " ")}:\n ${data.text.replace(
 //     /\n\s*\n/g,
 //     "\n",
