@@ -22,7 +22,11 @@ for (const fileName of Faculties) {
 
   if (!res.ok) {
     console.error(`Missing file: ${encodedName}`);
-    continue; // don't throw, skip file instead
+     return NextResponse.json(
+       { error: `Missing file: ${encodedName}` },
+       { status: 500 },
+     );
+    continue;  
   }
 
   const arrayBuffer = await res.arrayBuffer();
