@@ -10,4 +10,6 @@ export const campus ={
     DirectionsLink: "https://maps.app.goo.gl/TLCeZ8TH6viMfxZe6",
   };
  
-  export const Faculties:string[] = ["FCAI"];
+  export const Faculties: string[] = [
+    "Faculty of Computers and Artificial Intelligence",
+  ];
