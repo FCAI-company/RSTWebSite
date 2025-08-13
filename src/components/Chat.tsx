@@ -55,7 +55,7 @@ if(response.status===200) {
     setInput("");
 
  setLoad(true);
-
+  const token = process.env.NEXT_PUBLIC_HF_TOKEN;
   axios
     .post(
       "https://router.huggingface.co/v1/chat/completions",
@@ -70,7 +70,7 @@ if(response.status===200) {
       },
       {
         headers: {
-          Authorization: `Bearer ${process.env.HF_API_KEY}`,
+          Authorization: `Bearer ${process.env.HF_TOKEN}`,
           "Content-Type": "application/json",
         },
       },
@@ -162,7 +162,7 @@ if(response.status===200) {
                             dir={getDirection(msg.text)}
                             style={{ whiteSpace: "pre-line" }}
                             key={idx}
-                            className={`  p-2  ${
+                            className={`  p-2  my-1 ${
                               msg.sender === "user"
                                 ? "w-fit rounded-full bg-[#0047ab] px-3 text-white self-end ml-auto"
                                 : " bg-[#0000000e] rounded-xl w-[100%]   "
