@@ -5,8 +5,17 @@ import { Badge } from './ui/badge';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { ArrowRight, Play, Users, Award, Globe, Video } from 'lucide-react';
 import { ApplyLink } from '../app/config/config';
+import { useEffect, useRef } from 'react';
  
 export function HeroSection() {
+          const videoRef = useRef<HTMLVideoElement>(null);
+     useEffect(() => {
+       if (videoRef.current) {
+         videoRef.current.play().catch((error) => {
+           console.log('Error playing video:', error);
+         });
+       }
+     }, []);
   const stats = [
     { icon: Users, label: 'Students', value: '4,000+' },
     // { icon: Globe, label: 'Countries', value: '120+' },
@@ -85,6 +94,7 @@ export function HeroSection() {
                 className=" aspect-video overflow-hidden border-0 h-full w-full "
               >
                 <video
+                  ref={videoRef}
                   className="w-full h-full aspect-video object-cover"
                   autoPlay
                   loop

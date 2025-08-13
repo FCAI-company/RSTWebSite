@@ -5,6 +5,7 @@ export async function POST(req: Request) {
   try {
  const { Context, input } = await req.json();
  const apiKey = process.env.HF_TOKEN;
+ console.log( apiKey);
    const response= await axios.post(
       "https://router.huggingface.co/v1/chat/completions",
    {
