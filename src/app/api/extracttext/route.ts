@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import fs from "fs";
-import path from "path";
+// import fs from "fs";
+// import path from "path";
 import pdf from "pdf-parse";
 import { Faculties } from "@/app/config/config";
 
@@ -9,11 +9,10 @@ export async function GET(request: Request) {
 
     const origin = new URL(request.url).origin;
 
-    console.log("Origin:", origin);
-    const dataDir = path.join(process.cwd(), "public", "data");
+ 
+    // const dataDir = path.join(process.cwd(), "public", "data");
     // const files = fs.readdirSync(dataDir).filter((f) => f.endsWith(".pdf"));
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-
+ 
     let context = "";
 
 for (const fileName of Faculties) {
