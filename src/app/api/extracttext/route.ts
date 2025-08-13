@@ -16,19 +16,26 @@ export async function GET(request: Request) {
 
     let context = "";
 
-    for (const fileName of Faculties) {
-      const res = await fetch(`${origin}/data/${fileName}.pdf`);
-      if (!res.ok) throw new Error(`Failed to fetch ${fileName}.pdf`);
+for (const fileName of Faculties) {
+  const encodedName = encodeURIComponent(`${fileName}.pdf`);
+  const res = await fetch(`${origin}/data/${encodedName}`);
+ 
 
-      const arrayBuffer = await res.arrayBuffer();
-      const pdfBuffer = Buffer.from(arrayBuffer);
-      const data = await pdf(pdfBuffer);
+  if (!res.ok) {
+    console.error(`Missing file: ${encodedName}`);
+    continue; // don't throw, skip file instead
+  }
 
-      context += `${fileName.replace(/_/g, " ")}:\n ${data.text.replace(
-        /\n\s*\n/g,
-        "\n",
-      )}\n\n`;
-    }
+  const arrayBuffer = await res.arrayBuffer();
+  const pdfBuffer = Buffer.from(arrayBuffer);
+  const data = await pdf(pdfBuffer);
+
+  context += `${fileName.replace(/_/g, " ")}:\n ${data.text.replace(
+    /\n\s*\n/g,
+    "\n",
+  )}\n\n`;
+}
+
     // for (const fileName of files) {
     //   const filePath = path.join(dataDir, fileName);
     //   const pdfBuffer = fs.readFileSync(filePath);
