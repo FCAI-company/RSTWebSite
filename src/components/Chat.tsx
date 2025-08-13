@@ -55,27 +55,19 @@ if(response.status===200) {
     setInput("");
 
  setLoad(true);
-  const token = process.env.NEXT_PUBLIC_HF_TOKEN;
+ 
   axios
     .post(
-      "https://router.huggingface.co/v1/chat/completions",
+      "/api/chat",
       {
-        messages: [
-          {
-            role: "user",
-            content: `You must answer the following question using ONLY the information found in the provided context. and Simplify the answer with same language of question to egyptian students. If the answer is not explicitly stated in the context, respond exactly with:  Answer not found in context. Context: '${Context}' Question: '${input}'`,
-          },
-        ],
-        model: "openai/gpt-oss-120b:fireworks-ai",
+            Context, input 
+
       },
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.HF_TOKEN}`,
-          "Content-Type": "application/json",
-        },
-      },
+    
     )
     .then((response: any) => {
+      console.log(response);
+      setLoad(false);
        if (response.status === 200) {
         const botMessage = response.data.choices[0].message.content;
 
