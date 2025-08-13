@@ -4,8 +4,9 @@ import axios from "axios";
 export async function POST(req: Request) {
   try {
  const { Context, input } = await req.json();
- const apiKey = process.env.HF_TOKEN?.replace("_",'');
- console.log( apiKey);
+ const apiKey = process.env.HF_TOKEN
+   ? process.env.HF_TOKEN.replace(/_/g, ""): "";
+ console.log(apiKey);
    const response = await axios.post(
      "https://router.huggingface.co/v1/chat/completions",
      {

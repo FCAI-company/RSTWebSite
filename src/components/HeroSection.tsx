@@ -25,7 +25,7 @@ export function HeroSection() {
   return (
     <section
       id="Home"
-      className="  py-2 sm:p-0 m-0   w-full flex items-center relative  bg-gradient-to-br from-background via-background to-secondary/20"
+      className="  py-2 sm:p-0 m-0  overflow-y-hidden  w-full flex items-center relative  bg-gradient-to-br from-background via-background to-secondary/20"
       style={{
         minHeight: "calc(100dvh - 105px)",
       }}
