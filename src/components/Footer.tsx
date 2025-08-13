@@ -3,7 +3,7 @@ import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Separator } from './ui/separator';
 import { Globe, Facebook, Twitter, Instagram, Linkedin, Youtube, Mail, Phone, MapPin, X } from 'lucide-react';
-import { campus } from '../app/config/config';
+import { campus } from '../app/info/info';
 
 export function Footer() {
   const quickLinks = [

@@ -4,7 +4,7 @@ import { Card } from './ui/card';
 import { Badge } from './ui/badge';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { ArrowRight, Play, Users, Award, Globe, Video } from 'lucide-react';
-import { ApplyLink } from '../app/config/config';
+import { ApplyLink } from '../app/info/info';
 import { useEffect, useRef } from 'react';
  
 export function HeroSection() {

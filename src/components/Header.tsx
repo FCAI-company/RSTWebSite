@@ -5,7 +5,7 @@ import { Menu, X, Search, Globe, User } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import Image from "next/image";
 import { useRouter } from 'next/navigation';
-import { ApplyLink } from "../app/config/config";
+import { ApplyLink } from "../app/info/info";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 
