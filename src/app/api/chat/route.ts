@@ -17,7 +17,7 @@ export async function POST(req: Request) {
       },
       {
         headers: {
-          Authorization: `Bearer ${process.env.HF_TOKEN}`,
+          Authorization: `Bearer `,
           "Content-Type": "application/json",
         },
       }
