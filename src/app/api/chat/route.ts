@@ -4,6 +4,7 @@ import axios from "axios";
 export async function POST(req: Request) {
   try {
  const { Context, input } = await req.json();
+ const apiKey = process.env.HF_TOKEN;
    const response= await axios.post(
       "https://router.huggingface.co/v1/chat/completions",
    {
@@ -17,7 +18,7 @@ export async function POST(req: Request) {
       },
       {
         headers: {
-          Authorization: `Bearer `,
+          Authorization: `Bearer ${apiKey}`,
           "Content-Type": "application/json",
         },
       }
