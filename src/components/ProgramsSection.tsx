@@ -1,207 +1,139 @@
-'use client'
+// components/HorizontalAccordion.tsx
+"use client";
+
 import { useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { Button } from "./ui/button";
-import { Badge } from "./ui/badge";
-import { Input } from "./ui/input";
-import { ImageWithFallback } from "./figma/ImageWithFallback";
-import { Search, Clock, Users, MapPin, ArrowRight } from "lucide-react";
+import Image from "next/image";
+import clsx from "clsx";
 
-export function ProgramsSection() {
-  const [activeFilter, setActiveFilter] = useState("All");
-  const [searchTerm, setSearchTerm] = useState("");
+const items = [
+  {
+    title: "Faculty of Computers and Artificial Intelligence",
+    description:
+      "The Faculty of Computers and Artificial Intelligence equips students with cutting-edge skills in computing, data science, and AI to shape the future of technology and innovation.",
+    button: "Read More",
+    image: "/ProgramsSection/csAI.webp",
+    link:"https://rst.edu.eg/faculty-of-computers-and-artificial-intelligence/",
+  },
+  {
+    title: "Faculty of Dentistry",
+     description:
+      "The Faculty of Dentistry is dedicated to advancing oral health through innovative education, research, and patient care — shaping skilled professionals for a brighter, healthier future.",
+    button: "Read More",
+    image: "/ProgramsSection/Dentistry.webp",
+    link:"https://rst.edu.eg/faculty-of-dentistry/",
+  },
+  {
+    title: "Faculty of Physical Therapy",
+       description:
+      "The Faculty of Physical Therapy prepares skilled professionals to restore movement, improve quality of life, and lead in rehabilitation through hands-on education and clinical excellence.",
+    button: "Read More",
+    image: "/ProgramsSection/Physical Therapy.webp",
+    link:"https://rst.edu.eg/faculty-of-physical-therapy/",
+  },
+  {
+    title: "Faculty of Engineering",
+           description:
+      "The Faculty of Engineering empowers innovators to design solutions, drive technology forward, and build a better future through cutting-edge education and research.",
+    button: "Read More",
+    image: "/ProgramsSection/Engineering.webp",
+    link:"https://rst.edu.eg/faculty-of-engineering/",
+  },
+   {
+    title: "Faculty of Engineering",
+           description:
+      "The Faculty of Engineering empowers innovators to design solutions, drive technology forward, and build a better future through cutting-edge education and research.",
+    button: "Read More",
+    image: "/ProgramsSection/Nursing.webp",
+    link:"https://rst.edu.eg/faculty-of-computers-and-artificial-intelligence/",
+  },
+      {
+    title: "Faculty of Nursing",
+           description:
+      "The Faculty of Nursing prepares compassionate, skilled professionals to lead in healthcare, combining science, care, and critical thinking to improve lives.",
+    button: "Read More",
+    image: "/ProgramsSection/Engineering.webp",
+    link:"https://rst.edu.eg/faculty-of-nursing/",
+  },
+   {
+    title: "Faculty of Business Administration",
+           description:
+      "The Faculty of Business Administration develops future leaders with the knowledge, skills, and vision to excel in a dynamic global economy.",
+    button: "Read More",
+    image: "/ProgramsSection/Business.webp",
+    link:"https://rst.edu.eg/faculty-of-business-administration/",
+  },
+];
 
-  const filters = [
-    "All",
-    "Business",
-    "Engineering",
-    "Medicine",
-    "Arts",
-    "Computer Science",
-  ];
-
-  const programs = [
-    {
-      id: 1,
-      title: "Master of Business Administration",
-      category: "Business",
-      duration: "2 years",
-      students: "1,200+",
-      location: "Main Campus",
-      image:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      description:
-        "Develop strategic thinking and leadership skills for the global business environment.",
-      level: "Graduate",
-    },
-    {
-      id: 2,
-      title: "Computer Science & AI",
-      category: "Computer Science",
-      duration: "4 years",
-      students: "2,500+",
-      location: "Tech Campus",
-      image:
-        "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      description:
-        "Shape the future with cutting-edge AI and machine learning technologies.",
-      level: "Undergraduate",
-    },
-    {
-      id: 3,
-      title: "Biomedical Engineering",
-      category: "Engineering",
-      duration: "4 years",
-      students: "800+",
-      location: "Medical Campus",
-      image:
-        "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      description:
-        "Bridge engineering and medicine to solve complex healthcare challenges.",
-      level: "Undergraduate",
-    },
-    {
-      id: 4,
-      title: "Doctor of Medicine",
-      category: "Medicine",
-      duration: "6 years",
-      students: "500+",
-      location: "Medical Campus",
-      image:
-        "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      description:
-        "Train to become a physician with comprehensive medical education.",
-      level: "Professional",
-    },
-    {
-      id: 5,
-      title: "Fine Arts & Design",
-      category: "Arts",
-      duration: "3 years",
-      students: "600+",
-      location: "Arts Campus",
-      image:
-        "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      description:
-        "Express creativity through various artistic mediums and design principles.",
-      level: "Undergraduate",
-    },
-    {
-      id: 6,
-      title: "International Business",
-      category: "Business",
-      duration: "4 years",
-      students: "1,000+",
-      location: "Main Campus",
-      image:
-        "https://images.unsplash.com/photo-1507679799987-c73779587ccf?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      description:
-        "Navigate global markets with international business expertise.",
-      level: "Undergraduate",
-    },
-  ];
-
-  const filteredPrograms = programs.filter((program) => {
-    const matchesFilter =
-      activeFilter === "All" || program.category === activeFilter;
-    const matchesSearch =
-      program.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      program.category.toLowerCase().includes(searchTerm.toLowerCase());
-    return matchesFilter && matchesSearch;
-  });
+export  function ProgramsSection() {
+  const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section id="programs" className="py-20 bg-secondary/10">
-      <div className="container mx-auto px-4 lg:px-8">
-        <div className="text-center space-y-4 mb-12">
-          <h2 className="text-3xl lg:text-4xl font-bold">Academic Programs</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Discover world-class programs designed to prepare you for success in
-            your chosen field
-          </p>
-        </div>
+    <section
+      id="Faculties"
+      style={{ minHeight: "calc(100dvh - 105px)" }}
+      className="    relative flex items-center bg-gradient-to-br from-background via-background to-secondary/20"
+    >
+      <div className="container mx-auto px-4 lg:px-8 py-20 lg:py-32">
+        <h2 className="text-4xl md:text-5xl font-extrabold text-[#0047AB] mb-0 text-center">
+          Discover Our Faculties
+        </h2>
+        <p className=" text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-0 text-center">
+          Explore top-tier programs across a wide range of disciplines designed
+          for future leaders.
+        </p>
+        <span className="mb-4 mx-auto flex  bg-[#0047AB] w-[300px] h-[2px]"></span>
 
-        {/* Search and Filters */}
-        <div className="flex flex-col md:flex-row gap-4 mb-8">
-          <div className="relative flex-1 md:max-w-md">
-            <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-            <Input
-              placeholder="Search programs..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10"
-            />
-          </div>
-
-          <div className="flex flex-wrap gap-2">
-            {filters.map((filter) => (
-              <Button
-                key={filter}
-                variant={activeFilter === filter ? "default" : "outline"}
-                size="sm"
-                onClick={() => setActiveFilter(filter)}
+        <div className="snap-x flex  overflow-x-auto  scroll-smooth custom-scrollbar overflow-y-hidden  h-[500px]  ">
+          {items.map((item, index: number) => {
+            const isActive = activeIndex === index;
+            return (
+              <div
+                key={index}
+                onClick={() => setActiveIndex(index)}
+                className={clsx(
+                  " snap-start relative transition-all  duration-500 ease-in-out cursor-pointer m-1",
+                  isActive
+                    ? " min-w-[350px] md:min-w-[500px]"
+                    : "min-w-[150px] md:min-w-[150px]",
+                )}
               >
-                {filter}
-              </Button>
-            ))}
-          </div>
-        </div>
-
-        {/* Programs Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {filteredPrograms.map((program) => (
-            <Card
-              key={program.id}
-              className="group hover:shadow-lg transition-shadow"
-            >
-              <div className="aspect-video overflow-hidden rounded-t-lg">
-                <ImageWithFallback
-                  src={program.image}
-                  alt={program.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  className="object-cover z-0"
                 />
+                <div
+                  className="absolute inset-0    z-10"
+                  style={{ backgroundColor: "rgba(0, 71, 171,0.6)" }}
+                />
+                {isActive ? (
+                  <div className="transition-all flex flex-col justify-between h-full duration-500 absolute p-8  text-white z-20 max-w-[70%]">
+                    <div>
+                      <h2 className="text-2xl font-bold mb-4">{item.title}</h2>
+                      <p className="mb-4">{item.description}</p>
+                    </div>
+                    <button
+                      className="border border-white px-4 py-2"
+                      onClick={() => window.open(item.link, "_blank")}
+                    >
+                      {item.button}
+                    </button>
+                  </div>
+                ) : (
+                  <div
+                    className="absolute inset-0 flex items-center justify-center z-20 transition-all duration-500
+                      translate-y-4 group-hover:translate-y-0
+                    text-white"
+                  >
+                    <h3 className="text-2xl text-center font-bold">
+                      {item.title}
+                    </h3>
+                  </div>
+                )}
               </div>
-              <CardHeader className="space-y-3">
-                <div className="flex justify-between items-start">
-                  <Badge variant="secondary">{program.level}</Badge>
-                  <Badge variant="outline">{program.category}</Badge>
-                </div>
-                <CardTitle className="line-clamp-2">{program.title}</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <p className="text-sm text-muted-foreground line-clamp-2">
-                  {program.description}
-                </p>
-
-                <div className="grid grid-cols-3 gap-2 text-xs">
-                  <div className="flex items-center gap-1">
-                    <Clock className="h-3 w-3" />
-                    <span>{program.duration}</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <Users className="h-3 w-3" />
-                    <span>{program.students}</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <MapPin className="h-3 w-3" />
-                    <span>{program.location}</span>
-                  </div>
-                </div>
-
-                <Button variant="outline" size="sm" className="w-full">
-                  Learn More
-                  <ArrowRight className="ml-2 h-3 w-3" />
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-
-        <div className="text-center">
-          <Button size="lg">
-            View All Programs
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </Button>
+            );
+          })}
         </div>
       </div>
     </section>

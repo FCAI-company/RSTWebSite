@@ -3,7 +3,9 @@
 
 
 @custom-variant dark (&:is(.dark *));
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&family=Cairo:wght@300;400;600;700&display=swap');
 
+ 
 :root {
   --font-size: 14px;
   --background: #ffffff;
@@ -43,6 +45,7 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+    --font-arabic: 'Tajawal', 'Cairo', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
 
 .dark {
@@ -190,6 +193,65 @@
 
 html {
   font-size: var(--font-size);
+ }
+
+
+/* Modern custom scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
 }
 
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
 
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(100, 116, 139, 0.6); /* slate-500 w/ opacity */
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.custom-scrollbar:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(100, 116, 139, 0.8); /* darker on hover */
+}
+
+.custom-scrollbar::-webkit-scrollbar-corner {
+  background: transparent;
+
+}
+::-webkit-scrollbar {
+  width: 5px;
+
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+ 
+
+
+
+
+.chat-message {
+  background: #f3f4f6;
+  /* light gray bubble */
+  padding: 10px 14px;
+  border-radius: 12px;
+  max-width: 600px;
+  line-height: 1.8;
+  font-size: 16px;
+  direction: rtl;
+  /* Arabic support */
+  white-space: pre-wrap;
+  /* allow multi-line text */
+}

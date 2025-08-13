@@ -1,7 +1,9 @@
+import Image from 'next/image';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Separator } from './ui/separator';
-import { Globe, Facebook, Twitter, Instagram, Linkedin, Youtube, Mail, Phone, MapPin } from 'lucide-react';
+import { Globe, Facebook, Twitter, Instagram, Linkedin, Youtube, Mail, Phone, MapPin, X } from 'lucide-react';
+import { campus } from '../app/config/config';
 
 export function Footer() {
   const quickLinks = [
@@ -32,73 +34,129 @@ export function Footer() {
   ];
 
   const socialLinks = [
-    { icon: Facebook, href: '#', label: 'Facebook' },
-    { icon: Twitter, href: '#', label: 'Twitter' },
-    { icon: Instagram, href: '#', label: 'Instagram' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { icon: Youtube, href: '#', label: 'YouTube' },
+    {
+      icon: Facebook,
+      href: "https://www.facebook.com/Alryada.Univerity/",
+      label: "Facebook",
+    },
+    {
+      icon: Globe,
+      href: "https://rst.edu.eg/",
+      label: "Alryada university",
+    },
+    {
+      icon: Instagram,
+      href: "https://www.instagram.com/p/C9eo_5UC69W/",
+      label: "Instagram",
+    },
+    {
+      icon: Linkedin,
+      href: "https://www.linkedin.com/company/alryada-university/posts/?feedView=all",
+      label: "LinkedIn",
+    },
+    {
+      icon: Youtube,
+      href: "https://www.youtube.com/channel/UCLE3susZZNOcNlFIfK_YtHw",
+      label: "YouTube",
+    },
   ];
 
   return (
-    <footer className="bg-primary text-primary-foreground">
+    <footer className="bg-[#0047ab] text-primary-foreground">
       <div className="container mx-auto px-4 lg:px-8 py-12">
         {/* Main Footer Content */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8 mb-8">
+        <div className="flex flex-wrap justify-between gap-8 mb-8">
           {/* University Info */}
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center space-x-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary-foreground">
-                <Globe className="h-6 w-6 text-primary" />
-              </div>
+              <Image
+                src={`/RST-logo-01-762x1024.png`}
+                width={50}
+                height={50}
+                alt="Alryada university"
+              />
+
               <div>
-                <h3 className="text-lg font-semibold">International University</h3>
-                <p className="text-sm text-primary-foreground/80">Excellence Without Borders</p>
+                <h3 className="text-lg font-semibold">Alryada university</h3>
+                <p className="text-sm text-primary-foreground/80">
+                  For Science And Techology
+                </p>
               </div>
             </div>
-            
+
             <p className="text-sm text-primary-foreground/80 max-w-md">
-              Preparing global leaders for tomorrow's challenges through innovative education, 
-              cutting-edge research, and diverse cultural experiences.
+              Preparing global leaders for tomorrow's challenges through
+              innovative education, cutting-edge research, and diverse cultural
+              experiences.
             </p>
 
             <div className="space-y-2 text-sm">
               <div className="flex items-center space-x-2">
                 <MapPin className="h-4 w-4" />
-                <span>123 University Avenue, Academic City, AC 12345</span>
+                <span>
+                  El Sadat City, ElMehwar ElMarkazy-2, Cairo - Alex desert RD
+                  K92
+                </span>
               </div>
               <div className="flex items-center space-x-2">
                 <Phone className="h-4 w-4" />
-                <span>+1 (555) 123-4567</span>
+                <a
+                  href={`tel:${campus.Hotline}`}
+                  className="text-white hover:underline"
+                >
+                  {campus.Hotline}
+                </a>
               </div>
+
+              <div className="flex items-center space-x-2">
+                <Phone className="h-4 w-4" />
+                {campus.Phone.map((phone: string, index: number) => (
+                  <div key={index} className="flex items-center">
+                    {index > 0 && (
+                      <span  className="mx-2">
+                        |
+                      </span>
+                    )}
+                    <a
+                     
+                      href={`tel:${phone}`}
+                      className="text-white hover:underline mx-0 px-0"
+                    >
+                      {phone}
+                    </a>
+                  </div>
+                ))}
+              </div>
+
               <div className="flex items-center space-x-2">
                 <Mail className="h-4 w-4" />
-                <span>info@internationaluni.edu</span>
+                <span>{campus.email}</span>
               </div>
             </div>
 
             {/* Newsletter Signup */}
-            <div className="space-y-3">
+            {/* <div className="space-y-3">
               <h4 className="font-semibold">Stay Updated</h4>
               <div className="flex space-x-2">
-                <Input 
-                  placeholder="Enter your email" 
+                <Input
+                  placeholder="Enter your email"
                   className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/60"
                 />
                 <Button variant="secondary" size="sm">
                   Subscribe
                 </Button>
               </div>
-            </div>
+            </div> */}
           </div>
 
           {/* Quick Links */}
-          <div className="space-y-4">
+          {/* <div className="space-y-4">
             <h4 className="font-semibold">Quick Links</h4>
             <ul className="space-y-2">
               {quickLinks.map((link, index) => (
                 <li key={index}>
-                  <a 
-                    href={link.href} 
+                  <a
+                    href={link.href}
                     className="text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors"
                   >
                     {link.name}
@@ -106,16 +164,16 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </div> */}
 
           {/* Resources */}
-          <div className="space-y-4">
+          {/* <div className="space-y-4">
             <h4 className="font-semibold">Resources</h4>
             <ul className="space-y-2">
               {resources.map((link, index) => (
                 <li key={index}>
-                  <a 
-                    href={link.href} 
+                  <a
+                    href={link.href}
                     className="text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors"
                   >
                     {link.name}
@@ -123,16 +181,16 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </div> */}
 
           {/* Support */}
-          <div className="space-y-4">
+          {/* <div className="space-y-4">
             <h4 className="font-semibold">Support</h4>
             <ul className="space-y-2">
               {support.map((link, index) => (
                 <li key={index}>
-                  <a 
-                    href={link.href} 
+                  <a
+                    href={link.href}
                     className="text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors"
                   >
                     {link.name}
@@ -140,6 +198,30 @@ export function Footer() {
                 </li>
               ))}
             </ul>
+          </div> */}
+
+          {/* Social Links */}
+          <div className="flex flex-col justify-end space-x-4">
+            <div className="text-sm text-primary-foreground/80">Follow us:</div>
+            <div className="flex space-x-2">
+              {socialLinks.map((social, index) => (
+                <Button
+                  key={index}
+                  variant="ghost"
+                  size="icon"
+                  className="  p-0 text-primary-foreground/80 hover:text-primary-foreground hover:bg-primary-foreground/10"
+                  asChild
+                >
+                  <a
+                    href={social.href}
+                    target="_blank"
+                    aria-label={social.label}
+                  >
+                    <social.icon size={48} />
+                  </a>
+                </Button>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -148,27 +230,8 @@ export function Footer() {
         {/* Bottom Footer */}
         <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
           <div className="text-sm text-primary-foreground/80">
-            © 2024 International University. All rights reserved.
-          </div>
-          
-          {/* Social Links */}
-          <div className="flex items-center space-x-4">
-            <span className="text-sm text-primary-foreground/80">Follow us:</span>
-            <div className="flex space-x-2">
-              {socialLinks.map((social, index) => (
-                <Button
-                  key={index}
-                  variant="ghost"
-                  size="sm"
-                  className="w-8 h-8 p-0 text-primary-foreground/80 hover:text-primary-foreground hover:bg-primary-foreground/10"
-                  asChild
-                >
-                  <a href={social.href} aria-label={social.label}>
-                    <social.icon className="h-4 w-4" />
-                  </a>
-                </Button>
-              ))}
-            </div>
+            Copyright © 2023 | Al Ryada University For Science & Technology |
+            All rights reserved.
           </div>
         </div>
       </div>

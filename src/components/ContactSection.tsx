@@ -8,6 +8,8 @@ import { Textarea } from './ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { Badge } from './ui/badge';
 import { MapPin, Phone, Mail, Clock, MessageCircle, Users, HelpCircle, Send } from 'lucide-react';
+import MapWithDirections from './Location';
+ 
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
@@ -25,26 +27,14 @@ export function ContactSection() {
 
   const campuses = [
     {
-      name: 'Main Campus',
-      address: '123 University Avenue, Academic City, AC 12345',
-      phone: '+1 (555) 123-4567',
-      email: 'info@internationaluni.edu',
-      hours: 'Mon-Fri: 8:00 AM - 6:00 PM'
+      name: "Alryada university",
+      address:
+        "El Sadat City, ElMehwar ElMarkazy-2, Cairo - Alex desert RD K92",
+      Hotline: "16504",
+      phone: ["01552966678", "01552966679", "01552966680"],
+      email: "info@rst.edu.eg",
+      DirectionsLink: "https://maps.app.goo.gl/TLCeZ8TH6viMfxZe6",
     },
-    {
-      name: 'Medical Campus',
-      address: '456 Medical Center Drive, Health City, HC 12346',
-      phone: '+1 (555) 234-5678',
-      email: 'medical@internationaluni.edu',
-      hours: 'Mon-Fri: 7:00 AM - 7:00 PM'
-    },
-    {
-      name: 'Technology Campus',
-      address: '789 Innovation Boulevard, Tech Valley, TV 12347',
-      phone: '+1 (555) 345-6789',
-      email: 'tech@internationaluni.edu',
-      hours: 'Mon-Fri: 8:00 AM - 8:00 PM'
-    }
   ];
 
   const contactTypes = [
@@ -74,22 +64,30 @@ export function ContactSection() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle form submission
-    console.log('Form submitted:', formData);
-  };
+   };
 
   return (
-    <section id="contact" className="py-20 bg-secondary/5">
+    <section
+      id="contact"
+      style={{ minHeight: "calc(100dvh - 105px)" }}
+     
+      className="    relative flex items-center "
+    >
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="text-center space-y-4 mb-12">
-          <h2 className="text-3xl lg:text-4xl font-bold">Contact &amp; Support</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Get in touch with us. We're here to help you every step of the way.
+        <div className="text-center    ">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-[#0047AB] mb-0 text-center">
+            Campus Location
+          </h2>
+          <p className=" text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-0 text-center">
+            Find us easily. Discover our campus and see everything it has to
+            offer.
           </p>
+          <span className="mb-4 mx-auto flex  bg-[#0047AB] w-[300px] h-[2px]"></span>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 mb-12">
+        <div className="grid lg:grid-cols-2 gap-12  ">
           {/* Contact Form */}
-          <Card>
+          {/* <Card>
             <CardHeader>
               <CardTitle>Send us a Message</CardTitle>
             </CardHeader>
@@ -176,12 +174,12 @@ export function ContactSection() {
                 </Button>
               </form>
             </CardContent>
-          </Card>
+          </Card> */}
 
           {/* Contact Information */}
+          {/* Quick Contact Types */}
           <div className="space-y-6">
-            {/* Quick Contact Types */}
-            <div className="space-y-4">
+            {/* <div className="space-y-4">
               <h3 className="text-xl font-semibold">Quick Contact</h3>
               {contactTypes.map((type, index) => (
                 <Card key={index} className="transition-all hover:shadow-md">
@@ -208,10 +206,9 @@ export function ContactSection() {
                   </CardContent>
                 </Card>
               ))}
-            </div>
+            </div> */}
 
-            {/* Emergency Contact */}
-            <Card className="bg-destructive/10 border-destructive/20">
+            {/* <Card className="bg-destructive/10 border-destructive/20">
               <CardHeader>
                 <CardTitle className="text-destructive">Emergency Contact</CardTitle>
               </CardHeader>
@@ -225,27 +222,25 @@ export function ContactSection() {
                   <Badge variant="destructive">Available 24/7</Badge>
                 </div>
               </CardContent>
-            </Card>
+            </Card> */}
           </div>
         </div>
 
         {/* Campus Locations */}
         <div className="space-y-8">
-          <h3 className="text-2xl font-semibold text-center">Campus Locations</h3>
-          
+          {/* <h3 className="text-2xl font-semibold text-center">
+            Campus Locations
+          </h3> */}
+
           {/* Map Placeholder */}
           <Card className="overflow-hidden">
-            <div className="aspect-video bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center">
-              <div className="text-center space-y-2">
-                <MapPin className="h-12 w-12 text-primary mx-auto" />
-                <h4 className="text-lg font-semibold">Interactive Campus Map</h4>
-                <p className="text-sm text-muted-foreground">Click on campus locations for detailed information</p>
-              </div>
+            <div className=" h-[calc(70dvh)] bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center">
+              <MapWithDirections />
             </div>
           </Card>
 
           {/* Campus Details */}
-          <div className="grid md:grid-cols-3 gap-6">
+          {/* <div className="flex   gap-6">
             {campuses.map((campus, index) => (
               <Card key={index}>
                 <CardHeader>
@@ -262,52 +257,84 @@ export function ContactSection() {
                     </div>
                     <div className="flex items-center space-x-2">
                       <Phone className="h-4 w-4 text-muted-foreground" />
-                      <span>{campus.phone}</span>
+                      <a
+                        href={`tel:${campus.Hotline}`}
+                        className="text-blue-800 hover:underline"
+                      >
+                        {campus.Hotline}
+                      </a>
                     </div>
+                    {campus.phone.map((phone, idx) => (
+                      <div key={idx} className="flex items-center space-x-2">
+                        <Phone className="h-4 w-4 text-muted-foreground" />
+                        <a
+                          href={`tel:${phone}`}
+                          className="text-blue-800 hover:underline"
+                        >
+                          {phone}
+                        </a>
+                      </div>
+                    ))}
+
                     <div className="flex items-center space-x-2">
                       <Mail className="h-4 w-4 text-muted-foreground" />
-                      <span>{campus.email}</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <Clock className="h-4 w-4 text-muted-foreground" />
-                      <span>{campus.hours}</span>
+                      <a
+                        href={`mailto:${campus.email}`}
+                        className="text-blue-800 hover:underline"
+                      >
+                        {campus.email}
+                      </a>
                     </div>
                   </div>
-                  <Button variant="outline" size="sm" className="w-full">
+                  <Button variant="outline" size="sm" className="w-full" onClick={() => window.open(campus.DirectionsLink, '_blank')}>
                     Get Directions
                   </Button>
                 </CardContent>
               </Card>
             ))}
-          </div>
+          </div> */}
         </div>
 
         {/* FAQ Quick Links */}
-        <Card className="mt-12">
+        {/* <Card className="mt-12">
           <CardHeader>
-            <CardTitle className="text-center">Frequently Asked Questions</CardTitle>
+            <CardTitle className="text-center">
+              Frequently Asked Questions
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-              <Button variant="outline" className="h-auto p-4 flex-col space-y-2">
+              <Button
+                variant="outline"
+                className="h-auto p-4 flex-col space-y-2"
+              >
                 <HelpCircle className="h-5 w-5" />
                 <span className="text-sm">Admission Requirements</span>
               </Button>
-              <Button variant="outline" className="h-auto p-4 flex-col space-y-2">
+              <Button
+                variant="outline"
+                className="h-auto p-4 flex-col space-y-2"
+              >
                 <HelpCircle className="h-5 w-5" />
                 <span className="text-sm">Tuition &amp; Fees</span>
               </Button>
-              <Button variant="outline" className="h-auto p-4 flex-col space-y-2">
+              <Button
+                variant="outline"
+                className="h-auto p-4 flex-col space-y-2"
+              >
                 <HelpCircle className="h-5 w-5" />
                 <span className="text-sm">Campus Life</span>
               </Button>
-              <Button variant="outline" className="h-auto p-4 flex-col space-y-2">
+              <Button
+                variant="outline"
+                className="h-auto p-4 flex-col space-y-2"
+              >
                 <HelpCircle className="h-5 w-5" />
                 <span className="text-sm">International Students</span>
               </Button>
             </div>
           </CardContent>
-        </Card>
+        </Card> */}
       </div>
     </section>
   );
