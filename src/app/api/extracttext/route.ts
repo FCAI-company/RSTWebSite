@@ -1,54 +1,36 @@
 import { NextResponse } from "next/server";
-// import fs from "fs";
-// import path from "path";
+import fs from "fs";
+import path from "path";
 import pdf from "pdf-parse";
 import { Faculties } from "@/app/config/config";
 
-export async function GET(request: Request) {
+export const runtime = "nodejs"; // Force Node.js runtime
+
+export async function GET() {
   try {
+    const dataDir = path.join(process.cwd(), "public", "data"); // public/data folder
+    let context = "";
 
-     const origin = new URL(request.url).origin;
+    for (const fileName of Faculties) {
+      const filePath = path.join(dataDir, `${fileName}.pdf`);
 
- 
-    // const dataDir = path.join(process.cwd(), "public", "data");
-      // const files = fs.readdirSync(dataDir).filter((f) => f.endsWith(".pdf"));
- 
-      let context = "";
+      if (!fs.existsSync(filePath)) {
+        console.error(`Missing file: ${fileName}.pdf`);
+        continue;
+      }
 
-  for (const fileName of Faculties) {
-  const encodedName = encodeURIComponent(`${fileName}.pdf`);
-  const res = await fetch(`${origin}/data/${encodedName}`);
+      const pdfBuffer = fs.readFileSync(filePath); // direct read
+      const data = await pdf(pdfBuffer);
 
-
-  if (!res.ok) {
-    console.error(`Missing file: ${encodedName}`);
-   
-    continue;  
-  }
-
-     const arrayBuffer = await res.arrayBuffer();
-      const pdfBuffer = Buffer.from(arrayBuffer);
-      // const data = await pdf(pdfBuffer);
-context = pdfBuffer+"  " ;
-//   context += `${fileName.replace(/_/g, " ")}:\n ${data.text.replace(
-//     /\n\s*\n/g,
-//     "\n",
-//   )}\n\n`;
-  }
-
-    // for (const fileName of files) {
-    //   const filePath = path.join(dataDir, fileName);
-    //   const pdfBuffer = fs.readFileSync(filePath);
-    //   const data = await pdf(pdfBuffer);
-    //   context += `${fileName.split(".pdf")[0]}:\n ${data.text.replace(
-    //     /\n\s*\n/g,
-    //     "\n"
-    //   )}\n\n`;
-    // }
+      context += `${fileName.replace(/_/g, " ")}:\n${data.text.replace(
+        /\n\s*\n/g,
+        "\n",
+      )}\n\n`;
+    }
 
     return NextResponse.json({ text: context });
   } catch (err: any) {
-    console.log("Error extracting text:", err);
+    console.error("Error extracting text:", err);
     return NextResponse.json({ error: err.message }, { status: 500 });
   }
 }
