@@ -48,14 +48,11 @@ if(response.status===200) {
 
 
   const sendMessage = async () => {
-
     if (!input.trim()) return;
     const userMsg = { sender: "user", text: input.trim() };
     setMessages((prev: any) => [...prev, userMsg]);
     setInput("");
-
  setLoad(true);
- 
   axios
     .post(
       "/api/chat",
@@ -82,6 +79,34 @@ if(response.status===200) {
 
   };
 
+
+//  const sendMessage = async () => {
+//        if (!input.trim()) return;
+//        const userMsg = { sender: "user", text: input.trim() };
+//        setMessages((prev: any) => [...prev, userMsg]);
+//        setInput("");
+
+//     setLoad(true);
+
+   
+//    axios
+//      .post("/api/getanswer", { Context, input })
+//      .then((response: any) => {
+//        console.log(response);
+//        setLoad(false);
+//        if (response.status === 200) {
+//          const botMessage = response.data.choices[0].message.content;
+
+//          setMessages((prev) => [...prev, { sender: "bot", text: botMessage }]);
+//        }
+//        setLoad(false);
+//      })
+//      .catch((error: any) => {
+//        setLoad(false);
+//      });
+//   ;
+  
+//  }
  function Handleclose(){
     setIsOpen(prev=>!prev);
     setMessages([]);
