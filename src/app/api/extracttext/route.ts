@@ -7,13 +7,13 @@ import { Faculties } from "@/app/config/config";
 export async function GET(request: Request) {
   try {
 
-//     const origin = new URL(request.url).origin;
+     const origin = new URL(request.url).origin;
 
  
-//     // const dataDir = path.join(process.cwd(), "public", "data");
-//     // const files = fs.readdirSync(dataDir).filter((f) => f.endsWith(".pdf"));
+    // const dataDir = path.join(process.cwd(), "public", "data");
+      // const files = fs.readdirSync(dataDir).filter((f) => f.endsWith(".pdf"));
  
-      let context = "";
+      let context = "origin: " + origin + "\n\n";
 
 // for (const fileName of Faculties) {
 //   const encodedName = encodeURIComponent(`${fileName}.pdf`);
