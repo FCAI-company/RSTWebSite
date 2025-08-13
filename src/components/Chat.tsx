@@ -36,7 +36,7 @@ export function Chat() {
   }, [isOpen]);
 useEffect(() => {
   axios
-    .get("/api/extract-text").then((response) => {
+    .get("/api/extracttext").then((response) => {
 if(response.status===200) {
          setContext(response.data.text); 
 } 
