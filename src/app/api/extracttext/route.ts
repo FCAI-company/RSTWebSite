@@ -18,21 +18,18 @@ export async function GET(request: Request) {
   for (const fileName of Faculties) {
   const encodedName = encodeURIComponent(`${fileName}.pdf`);
   const res = await fetch(`${origin}/data/${encodedName}`);
- context = res + " " + encodedName;
 
-//   if (!res.ok) {
-//     console.error(`Missing file: ${encodedName}`);
-//      return NextResponse.json(
-//        { error: `Missing file: ${encodedName}` },
-//        { status: 500 },
-//      );
-//     continue;  
-//   }
 
-//   const arrayBuffer = await res.arrayBuffer();
-//   const pdfBuffer = Buffer.from(arrayBuffer);
-//   const data = await pdf(pdfBuffer);
+  if (!res.ok) {
+    console.error(`Missing file: ${encodedName}`);
+   
+    continue;  
+  }
 
+     const arrayBuffer = await res.arrayBuffer();
+      const pdfBuffer = Buffer.from(arrayBuffer);
+      const data = await pdf(pdfBuffer);
+context = pdfBuffer+"  "+data.text;
 //   context += `${fileName.replace(/_/g, " ")}:\n ${data.text.replace(
 //     /\n\s*\n/g,
 //     "\n",
