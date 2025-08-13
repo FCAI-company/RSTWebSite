@@ -26,10 +26,11 @@ export async function POST(req: Request) {
     // Hugging Face returns an array with generated_text
     return NextResponse.json({ text: data[0]?.generated_text || "" });
   } catch (error: any) {
-    console.error("Hugging Face API Error:", error);
+    
     return NextResponse.json(
       { error: "Failed to generate text" },
       { status: 500 }
     );
   }
+  
 }

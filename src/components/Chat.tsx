@@ -70,7 +70,7 @@ if(response.status===200) {
       },
       {
         headers: {
-          Authorization: `Bearer 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`,
+          Authorization: `Bearer ${process.env.HF_API_KEY}`,
           "Content-Type": "application/json",
         },
       },
