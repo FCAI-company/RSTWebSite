@@ -5,7 +5,7 @@ import pdf from "pdf-parse";
 
 export async function GET() {
   try {
-    const dataDir = path.join(process.cwd(), "src", "data");
+    const dataDir = path.join(process.cwd(), "public", "data");
     const files = fs.readdirSync(dataDir).filter((f) => f.endsWith(".pdf"));
     let context = "";
 
