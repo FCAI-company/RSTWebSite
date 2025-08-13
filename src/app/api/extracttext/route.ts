@@ -7,37 +7,37 @@ import { Faculties } from "@/app/config/config";
 export async function GET(request: Request) {
   try {
 
-    const origin = new URL(request.url).origin;
+//     const origin = new URL(request.url).origin;
 
  
-    // const dataDir = path.join(process.cwd(), "public", "data");
-    // const files = fs.readdirSync(dataDir).filter((f) => f.endsWith(".pdf"));
+//     // const dataDir = path.join(process.cwd(), "public", "data");
+//     // const files = fs.readdirSync(dataDir).filter((f) => f.endsWith(".pdf"));
  
-    let context = "";
+      let context = "";
 
-for (const fileName of Faculties) {
-  const encodedName = encodeURIComponent(`${fileName}.pdf`);
-  const res = await fetch(`${origin}/data/${encodedName}`);
+// for (const fileName of Faculties) {
+//   const encodedName = encodeURIComponent(`${fileName}.pdf`);
+//   const res = await fetch(`${origin}/data/${encodedName}`);
  
 
-  if (!res.ok) {
-    console.error(`Missing file: ${encodedName}`);
-     return NextResponse.json(
-       { error: `Missing file: ${encodedName}` },
-       { status: 500 },
-     );
-    continue;  
-  }
+//   if (!res.ok) {
+//     console.error(`Missing file: ${encodedName}`);
+//      return NextResponse.json(
+//        { error: `Missing file: ${encodedName}` },
+//        { status: 500 },
+//      );
+//     continue;  
+//   }
 
-  const arrayBuffer = await res.arrayBuffer();
-  const pdfBuffer = Buffer.from(arrayBuffer);
-  const data = await pdf(pdfBuffer);
+//   const arrayBuffer = await res.arrayBuffer();
+//   const pdfBuffer = Buffer.from(arrayBuffer);
+//   const data = await pdf(pdfBuffer);
 
-  context += `${fileName.replace(/_/g, " ")}:\n ${data.text.replace(
-    /\n\s*\n/g,
-    "\n",
-  )}\n\n`;
-}
+//   context += `${fileName.replace(/_/g, " ")}:\n ${data.text.replace(
+//     /\n\s*\n/g,
+//     "\n",
+//   )}\n\n`;
+// }
 
     // for (const fileName of files) {
     //   const filePath = path.join(dataDir, fileName);
