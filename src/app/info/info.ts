@@ -12,4 +12,5 @@ export const campus ={
  
   export const Faculties: string[] = [
     "Faculty_of_Computers_and_Artificial_Intelligence",
+ 
   ];

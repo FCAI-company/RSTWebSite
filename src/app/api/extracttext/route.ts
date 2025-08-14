@@ -1,13 +1,16 @@
 import { NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
+import { extractPDFs } from "../../../../scripts/extract-pdfs";
 
 export async function GET() {
   try {
+    const res= await extractPDFs();
+     
     const jsonPath = path.join(process.cwd(), "public", "pdf-data.json");
     const jsonData = fs.readFileSync(jsonPath, "utf-8");
     const data = JSON.parse(jsonData);
-
+ 
     return NextResponse.json({ text: data });
   } catch (err: any) {
     console.error("Error reading JSON:", err);

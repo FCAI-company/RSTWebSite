@@ -1,27 +1,24 @@
+import { Faculties } from "../src/app/info/info";
 import fs from "fs";
 import path from "path";
 import pdf from "pdf-parse";
-import { Faculties } from "../src/app/info/info";
+ 
 
-const dataDir = path.join(process.cwd(), "public", "data");
-const outputPath = path.join(process.cwd(), "public", "pdf-data.json");
-
-(async () => {
-  let result: Record<string, string> = {};
-
+export async function extractPDFs() {
+  const dataDir = path.join(process.cwd(), "public", "data");
+  let context: string = "";
+console.log(Faculties);
   for (const fileName of Faculties) {
+    console.log(fileName);
     const filePath = path.join(dataDir, `${fileName}.pdf`);
-    if (!fs.existsSync(filePath)) {
-      console.error(`Missing file: ${filePath}`);
-      continue;
-    }
-
+     console.log(filePath);
+    if (!fs.existsSync(filePath)) continue;
     const pdfBuffer = fs.readFileSync(filePath);
     const data = await pdf(pdfBuffer);
-
-    result[fileName.replace(/_/g, " ")] = data.text.replace(/\n\s*\n/g, "\n");
+    context +=fileName.replace(/_/g, " ") + data.text.replace(/\n\s*\n/g, "\n");
   }
 
-  fs.writeFileSync(outputPath, JSON.stringify(result, null, 2));
-  console.log(`✅ Extracted data saved to ${outputPath}`);
-})();
+  const outputPath = path.join(process.cwd(), "public", "pdf-data.json");
+  fs.writeFileSync(outputPath, JSON.stringify(context, null, 2));
+  return context;
+}
