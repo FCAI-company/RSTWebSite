@@ -25,13 +25,13 @@ export function HeroSection() {
   return (
     <section
       id="Home"
-      className="  py-2 sm:p-0 m-0  overflow-y-hidden  w-full flex items-center relative  bg-gradient-to-br from-background via-background to-secondary/20"
+      className="  py-2 sm:p-0 m-0  overflow-x-hidden  w-full flex items-center relative  bg-gradient-to-br from-background via-background to-secondary/20"
       style={{
         minHeight: "calc(100dvh - 105px)",
       }}
     >
       <div
-        className=" sm:w-full sm:h-full sm:flex px-0 sm:px-5    "
+        className=" sm:w-full sm:h-full overflow-x-hidden sm:flex px-0 sm:px-5    "
         style={{
           minHeight: "calc(100dvh - 105px)",
         }}
@@ -109,7 +109,7 @@ export function HeroSection() {
                   muted
                   controls={false}
                   preload="metadata"
-                   poster="/rst-slider-1.webp" // Optional
+                  poster="/rst-slider-1.webp" // Optional
                 >
                   <source
                     width={100}
