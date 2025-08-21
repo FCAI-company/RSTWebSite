@@ -96,10 +96,17 @@ export function ContactUs() {
                   className="bg-white absolute  bottom-25 left-10 w-100   rounded-2xl shadow-lg flex flex-col overflow-hidden"
                 >
                     <CardContent className="p-8">
-                <h3 className="text-2xl mb-6" style={{ color: '#2563eb' }}>
-                  Contact Information
-                </h3>
-                
+           <div className="flex justify-between items-center mb-6">
+                      <h3 className="text-2xl" style={{ color: '#2563eb' }}>
+                        Contact Information
+                      </h3>
+                      <button onClick={() => Handleclose()} >
+                        <p className="text-gray-500 font-bold hover:text-red-700 hover:scale-125 transition-all duration-200">
+                          ✕
+                        </p>
+                        
+                      </button>
+                    </div>
                 <div className="space-y-6">
                   {/* Phone */}
                   <div className="flex items-center space-x-4">
