@@ -1,6 +1,8 @@
 import { AdmissionsSection } from "@/components/AdmissionsSection";
 import { Chat } from "@/components/Chat";
+import { Contact } from "@/components/Contact";
 import { ContactSection } from "@/components/ContactSection";
+import { ContactUs } from "@/components/ContactUs";
 import { DiscoverRSTUniversity } from "@/components/DiscoverRSTUniversity";
 import { EventsNewsSection } from "@/components/EventsNewsSection";
 import { Footer } from "@/components/Footer";
@@ -28,10 +30,14 @@ export default function Home() {
 <ScrollFade >
         <EventsNewsSection />
         </ScrollFade>
+                <ScrollFade >
+        <Contact />
+        </ScrollFade>
         <ScrollFade >
         <ContactSection />
         </ScrollFade>
         <Chat />
+        <ContactUs/>
       </main>
       <Footer />
     </div>

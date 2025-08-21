@@ -3,7 +3,8 @@ import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Separator } from './ui/separator';
 import { Globe, Facebook, Twitter, Instagram, Linkedin, Youtube, Mail, Phone, MapPin, X } from 'lucide-react';
-import { campus } from '../app/info/info';
+import { campus, SocialMediaLink, socialMediaLinks } from '../app/info/info';
+ 
 
 export function Footer() {
   const quickLinks = [
@@ -33,33 +34,7 @@ export function Footer() {
     { name: 'Terms of Service', href: '#terms' },
   ];
 
-  const socialLinks = [
-    {
-      icon: Facebook,
-      href: "https://www.facebook.com/Alryada.Univerity/",
-      label: "Facebook",
-    },
-    {
-      icon: Globe,
-      href: "https://rst.edu.eg/",
-      label: "Alryada university",
-    },
-    {
-      icon: Instagram,
-      href: "https://www.instagram.com/p/C9eo_5UC69W/",
-      label: "Instagram",
-    },
-    {
-      icon: Linkedin,
-      href: "https://www.linkedin.com/company/alryada-university/posts/?feedView=all",
-      label: "LinkedIn",
-    },
-    {
-      icon: Youtube,
-      href: "https://www.youtube.com/channel/UCLE3susZZNOcNlFIfK_YtHw",
-      label: "YouTube",
-    },
-  ];
+ 
 
   return (
     <footer className="bg-[#0047ab] text-primary-foreground">
@@ -93,10 +68,9 @@ export function Footer() {
             <div className="space-y-2 text-sm">
               <div className="flex items-center space-x-2">
                 <MapPin className="h-4 w-4" />
-                <span>
-                  El Sadat City, ElMehwar ElMarkazy-2, Cairo - Alex desert RD
-                  K92
-                </span>
+                 <a href={campus.addressLink} target='_blank'>
+                {campus.address}
+                </a>
               </div>
               <div className="flex items-center space-x-2">
                 <Phone className="h-4 w-4" />
@@ -130,7 +104,8 @@ export function Footer() {
 
               <div className="flex items-center space-x-2">
                 <Mail className="h-4 w-4" />
-                <span>{campus.email}</span>
+                
+                <a href={`mailto:${campus.email}`}>{campus.email}</a>
               </div>
             </div>
 
@@ -204,7 +179,9 @@ export function Footer() {
           <div className="flex flex-col justify-end space-x-4">
             <div className="text-sm text-primary-foreground/80">Follow us:</div>
             <div className="flex space-x-2">
-              {socialLinks.map((social, index) => (
+           
+
+              {socialMediaLinks.map((social:SocialMediaLink , index: number) => (
                 <Button
                   key={index}
                   variant="ghost"
@@ -213,9 +190,9 @@ export function Footer() {
                   asChild
                 >
                   <a
-                    href={social.href}
+                    href={social.url}
                     target="_blank"
-                    aria-label={social.label}
+                    aria-label={social.name}
                   >
                     <social.icon size={48} />
                   </a>

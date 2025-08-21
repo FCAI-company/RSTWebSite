@@ -32,7 +32,8 @@ export function Header() {
     // { name: "Student Life", href: "#student-life" },
     // { name: "Research", href: "#research" },
     { name: "News", href: "#EventsNewsSection" },
-    { name: "Contact", href: "#contact" },
+      { name: "Contact Us", href: "#contactUS" },
+    { name: "Location", href: "#contact" },
   ];
 function scrollToId(id:string) {
   const element = document.getElementById(id);
