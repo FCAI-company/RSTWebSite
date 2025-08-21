@@ -25,18 +25,18 @@ export const campus ={
                 icon: React.ComponentType<{ size?: number ,className?:string,style?: React.CSSProperties}>;
               }
   export  const socialMediaLinks:SocialMediaLink[] = [
-    {
+      {
+      name: 'Alryada university',
+      icon: Globe,
+      url: 'https://rst.edu.eg/',
+      color: '#6b7280'
+    },{
       name: 'Facebook',
       icon: Facebook,
       url: 'https://www.facebook.com/Alryada.Univerity/',
       color: '#1877F2'
     },
-    {
-      name: 'Alryada university',
-      icon: Globe,
-      url: 'https://rst.edu.eg/',
-      color: '#6b7280'
-    },
+  
     {
       name: 'Instagram',
       icon: Instagram,

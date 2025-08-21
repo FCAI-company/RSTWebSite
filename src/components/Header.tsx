@@ -67,14 +67,20 @@ function scrollToId(id:string) {
         <div className="flex h-22 sm:h-30 items-center justify-between">
           {/* Logo */}
           <div className="flex items-center space-x-3">
-            <div className="flex h-15 w-15 sm:h-20 sm:w-20 items-center justify-center">
+            <a    onClick={(e) => {
+                  e.preventDefault();
+                 window.scrollTo({
+    top: 0,
+    behavior: "smooth", 
+  });
+                }} className="flex h-15 w-15 sm:h-20 sm:w-20 items-center justify-center">
               <Image
                 src={`/RST-logo-01.png`}
                 width={250}
                 height={250}
                 alt="Alryada university"
               />
-            </div>
+            </a>
           </div>
 
           {/* Desktop Navigation */}

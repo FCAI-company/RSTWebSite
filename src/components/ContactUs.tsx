@@ -8,8 +8,9 @@ import Image from "next/image";
 import axios from "axios";
 import Typewriter from "./Typewriter";
 import { getDirection } from "./getDir";
-import { campus } from "@/app/info/info";
+import { campus, socialMediaLinks } from "@/app/info/info";
 import { CardContent } from "./ui/card";
+import { Button } from "./ui/button";
  
  
 export function ContactUs() {
@@ -93,9 +94,11 @@ export function ContactUs() {
                   exit={{ y: 100, opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.3, ease: "easeOut" }}
                   onClick={(e) => e.stopPropagation()}
-                  className="bg-white absolute  bottom-25 left-10 w-100   rounded-2xl shadow-lg flex flex-col overflow-hidden"
+                  className="bg-white absolute p-5  bottom-25 left-5  sm:left-10  max-w-[90%]  sm:max-w-[350px]   rounded-2xl shadow-lg flex flex-col overflow-hidden"
                 >
-                    <CardContent className="p-8">
+                 
+
+                 
            <div className="flex justify-between items-center mb-6">
                       <h3 className="text-2xl" style={{ color: '#2563eb' }}>
                         Contact Information
@@ -169,8 +172,41 @@ export function ContactUs() {
                   </div>
                 </div>
 
+              
+              
+
+               <p className="text-sm text-gray-500 mt-4  mb-1">Follow Us</p>
+
+                <div className="grid grid-cols-5 gap-4">
+                
+                  {socialMediaLinks.map((social, index) => (
+                    <Button
+                      key={index}
+                      variant="outline"
+                      className=" flex flex-col items-center justify-center space-y-2 hover:shadow-md transition-all duration-200"
+                      onClick={() => window.open(social.url, '_blank')}
+                      style={{
+                        borderColor: social.color + '20',
+                        backgroundColor: 'white',
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = social.color + '10';
+                        e.currentTarget.style.borderColor = social.color;
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = 'white';
+                        e.currentTarget.style.borderColor = social.color + '20';
+                      }}
+                    >
+                      <social.icon className="h-5 w-5" style={{ color: social.color }} />
+                      {/* <span className="text-xs" style={{ color: social.color }}>
+                        {social.name}
+                      </span> */}
+                    </Button>
+                  ))}
+                </div>
           
-              </CardContent>
+         
                
                 </motion.div>
               </motion.div>
